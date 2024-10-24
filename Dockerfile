@@ -1,17 +1,25 @@
-# Use an official Python runtime as a parent image
-FROM python:3.12-slim
+# Use a lightweight Node.js image
+FROM node:20-slim
 
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
-COPY . /app
+# Write a simple web server in Node.js
+RUN echo "\
+const http = require('http');\n\
+const port = 8080;\n\
+const server = http.createServer((req, res) => {\n\
+    res.statusCode = 200;\n\
+    res.setHeader('Content-Type', 'text/plain');\n\
+    res.end('Hello, World from Node.js!\\n');\n\
+});\n\
+server.listen(port, () => {\n\
+    console.log(`Server running at http://0.0.0.0:${port}/`);\n\
+});\n\
+" > server.js
 
-# Install any needed packages (if you have requirements.txt)
-# RUN pip install --no-cache-dir -r requirements.txt
+# Expose port 8080 to the outside world
+EXPOSE 8080
 
-# Write the hello world script
-RUN echo 'print("Hello, World!")' > hello.py
-
-# Run the hello world script when the container launches
-CMD ["python", "hello.py"]
+# Run the Node.js app when the container launches
+CMD ["node", "server.js"]
