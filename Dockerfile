@@ -1,12 +1,12 @@
 # Use a lightweight Node.js image
 FROM node:20-slim
 
-# Set the working directory in the container
+# Set the working directory inside the container
 WORKDIR /app
 
-# Write a simple web server in Node.js
-RUN echo "const http = require('http');\nconst port = 8080;\nconst server = http.createServer((req, res) => {\n    res.statusCode = 200;\n    res.setHeader('Content-Type', 'text/plain');\n    res.end('Hello, World from Node.js!\\n');\n});\nserver.listen(port, () => {\n    console.log('Server running at http://0.0.0.0:' + port);\n});\n" > server.js
-
+# Copy the necessary files to the container
+COPY server.js /app
+COPY index.html /app
 
 # Expose port 8080 to the outside world
 EXPOSE 8080
