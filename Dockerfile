@@ -5,7 +5,7 @@ FROM node:20-slim
 WORKDIR /app
 
 # Write a simple web server in Node.js
-RUN echo "const http = require('http');\nconst port = 8080;\nconst server = http.createServer((req, res) => {\n    res.statusCode = 200;\n    res.setHeader('Content-Type', 'text/plain');\n    res.end('Hello, World from Node.js!\\n');\n});\nserver.listen(port, () => {\n    console.log(`Server running at http://0.0.0.0:${port}/`);\n});\n" > server.js
+RUN echo "const http = require('http');\nconst port = 8080;\nconst server = http.createServer((req, res) => {\n    res.statusCode = 200;\n    res.setHeader('Content-Type', 'text/plain');\n    res.end('Hello, World from Node.js!\\n');\n});\nserver.listen(port, () => {\n    console.log('Server running at http://0.0.0.0:' + port);\n});\n" > server.js
 
 
 # Expose port 8080 to the outside world
