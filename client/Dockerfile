@@ -1,4 +1,9 @@
 # Use a lightweight Node.js image
+
+# Introduce a delay to simulate a long build process
+RUN sleep 15
+
+RUN echo "Building........"
 FROM node:20-slim
 
 # Set the working directory inside the container
@@ -8,8 +13,6 @@ WORKDIR /app
 COPY server.js /app
 COPY index.html /app
 
-# Introduce a delay to simulate a long build process
-RUN sleep 15
 
 # Expose port 8080 to the outside world
 EXPOSE 8080
