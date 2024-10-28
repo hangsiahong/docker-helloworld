@@ -1,10 +1,10 @@
 # Use a lightweight Node.js image
+FROM node:20-slim
 
 # Introduce a delay to simulate a long build process
 RUN sleep 15
 
 RUN echo "Building........"
-FROM node:20-slim
 
 # Set the working directory inside the container
 WORKDIR /app
