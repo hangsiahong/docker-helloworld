@@ -1,167 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cooking Delight Blog</title>
-    <style>
-        /* General Styles */
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f8f8;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cooking Delight Blog</title>
+  <style>
+    :root {
+      --primary-color: #ff6b6b;
+      --text-color: #666;
+      --meta-color: #999;
+      --bg-color: #f8f8f8;
+      --white: #fff;
+      --shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
 
-        header {
-            background-color: #ff6b6b;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
+    /* Reset & Base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
 
-        header h1 {
-            margin: 0;
-            font-size: 3rem;
-        }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
 
-        nav {
-            margin-top: 10px;
-        }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 1.1rem;
-        }
+    /* Header */
+    header {
+      background-color: var(--primary-color);
+      color: var(--white);
+      padding: 1.5rem 1rem;
+      text-align: center;
+    }
 
-        /* Blog Post Styles */
-        .container {
-            width: 80%;
-            margin: 50px auto;
-        }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
 
-        .blog-post {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 40px;
-            animation: fadeIn 1.5s ease-in-out forwards;
-        }
+    nav {
+      margin-top: 0.5rem;
+    }
 
-        .blog-post img {
-            max-width: 100%;
-            border-radius: 8px;
-            margin-top: 20px;
-        }
+    nav a {
+      margin: 0 1rem;
+      font-size: 1.1rem;
+      color: var(--white);
+      transition: opacity 0.3s;
+    }
 
-        .blog-post h2 {
-            color: #ff6b6b;
-            margin-bottom: 10px;
-        }
+    nav a:hover {
+      opacity: 0.8;
+    }
 
-        .blog-post p {
-            color: #666;
-            line-height: 1.6;
-        }
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    }
 
-        .blog-post .meta {
-            font-size: 0.9rem;
-            color: #999;
-            margin-bottom: 15px;
-        }
+    /* Blog Posts */
+    .blog-post {
+      background-color: var(--white);
+      border-radius: 0.5rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 2.5rem;
+      padding: 1.5rem;
+      animation: fadeIn 1.5s ease forwards;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: transform 0.3s ease-in-out;
+    }
 
-        .blog-post:hover {
-            transform: translateY(-10px);
-            transition: transform 0.3s ease-in-out;
-        }
+    .blog-post:hover {
+      transform: translateY(-10px);
+    }
 
-        /* Footer Styles */
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 50px;
-        }
+    .blog-post h2 {
+      color: var(--primary-color);
+      margin-top: 0;
+    }
 
-        footer p {
-            margin: 0;
-            font-size: 0.9rem;
-        }
+    .meta {
+      font-size: 0.9rem;
+      color: var(--meta-color);
+      margin-bottom: 1rem;
+    }
 
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    .blog-post img {
+      width: 100%;
+      margin-top: 1rem;
+      border-radius: 0.5rem;
+      display: block;
+    }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .container {
-                width: 95%;
-            }
+    /* Footer */
+    footer {
+      background-color: #333;
+      color: var(--white);
+      text-align: center;
+      padding: 1.25rem 1rem;
+      font-size: 0.9rem;
+      margin-top: 3rem;
+    }
 
-            header h1 {
-                font-size: 2.2rem;
-            }
+    /* Animation */
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-            nav a {
-                font-size: 0.9rem;
-            }
-        }
-    </style>
+    /* Responsive */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      nav a {
+        font-size: 1rem;
+        margin: 0 0.5rem;
+      }
+
+      .container {
+        padding: 0 0.75rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Header Section -->
-    <header>
-        <h1>Cooking Delight Blog</h1>
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">Recipes</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
-        </nav>
-    </header>
+  <header role="banner">
+    <h1>Cooking Delight Blog</h1>
+    <nav role="navigation" aria-label="Main navigation">
+      <a href="#">Home</a>
+      <a href="#">Recipes</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
 
-    <!-- Blog Content Section -->
-    <div class="container">
-        <!-- First Blog Post -->
-        <div class="blog-post">
-            <h2>The Ultimate Chocolate Cake</h2>
-            <div class="meta">Posted on October 24, 2024 | 5 min read</div>
-            <p>If you're a fan of chocolate, then this ultimate chocolate cake recipe is for you. Rich, moist, and absolutely indulgent. This cake is perfect for special occasions or as a delightful weekend treat.</p>
-            <img src="https://source.unsplash.com/800x400/?chocolate,cake" alt="Chocolate Cake">
-        </div>
+  <main class="container" role="main">
+    <article class="blog-post">
+      <h2>The Ultimate Chocolate Cake</h2>
+      <div class="meta">Posted on October 24, 2024 | 5 min read</div>
+      <p>If you're a fan of chocolate, this ultimate chocolate cake recipe is for you—rich, moist, and indulgent. Perfect for special occasions or a delightful weekend treat.</p>
+      <img src="https://source.unsplash.com/800x400/?chocolate,cake" alt="A delicious chocolate cake on a plate">
+    </article>
 
-        <!-- Second Blog Post -->
-        <div class="blog-post">
-            <h2>5 Easy Pasta Dishes for Busy Weeknights</h2>
-            <div class="meta">Posted on October 20, 2024 | 3 min read</div>
-            <p>Pasta is the ultimate comfort food, and it's easy to whip up something delicious even on the busiest weeknights. Here are 5 simple yet flavorful pasta dishes that you can make in under 30 minutes.</p>
-            <img src="https://source.unsplash.com/800x400/?pasta,cooking" alt="Pasta Dishes">
-        </div>
+    <article class="blog-post">
+      <h2>5 Easy Pasta Dishes for Busy Weeknights</h2>
+      <div class="meta">Posted on October 20, 2024 | 3 min read</div>
+      <p>Pasta is the ultimate comfort food. Here are 5 simple yet flavorful dishes you can make in under 30 minutes—even on the busiest nights.</p>
+      <img src="https://source.unsplash.com/800x400/?pasta,cooking" alt="Pasta dish served in a bowl">
+    </article>
 
-        <!-- Third Blog Post -->
-        <div class="blog-post">
-            <h2>Healthy Smoothie Recipes to Start Your Day</h2>
-            <div class="meta">Posted on October 18, 2024 | 4 min read</div>
-            <p>Need a quick and healthy breakfast option? Smoothies are the way to go. Packed with nutrients, these smoothie recipes are perfect for starting your day off right!</p>
-            <img src="https://source.unsplash.com/800x400/?smoothie,healthy" alt="Smoothies">
-        </div>
-    </div>
+    <article class="blog-post">
+      <h2>Healthy Smoothie Recipes to Start Your Day</h2>
+      <div class="meta">Posted on October 18, 2024 | 4 min read</div>
+      <p>Need a quick and healthy breakfast? Smoothies are the way to go. Packed with nutrients, these recipes are perfect for a fresh start to your day.</p>
+      <img src="https://source.unsplash.com/800x400/?smoothie,healthy" alt="Colorful healthy smoothies in glasses">
+    </article>
+  </main>
 
-    <!-- Footer Section -->
-    <footer>
-        <p>&copy; 2024 Cooking Delight Blog. All rights reserved.</p>
-    </footer>
+  <footer role="contentinfo">
+    <p>&copy; 2024 Cooking Delight Blog. All rights reserved.</p>
+  </footer>
 </body>
 </html>
