@@ -9,6 +9,7 @@
       --bg: #0f1117;
       --bg-light: #1a1d25;
       --primary: #00c9a7;
+      --accent: #ffb26b;
       --text: #d6dee9;
       --subtle: #9fa7b4;
       --font: 'Courier New', Courier, monospace;
@@ -29,48 +30,67 @@
       padding-bottom: 4rem;
     }
 
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
     header {
-      background: var(--bg-light);
+      background: linear-gradient(90deg, var(--primary), var(--accent));
       padding: 2rem;
       text-align: center;
-      border-bottom: 1px solid #222;
+      box-shadow: var(--shadow);
     }
 
     header h1 {
-      font-size: 2.5rem;
-      color: var(--primary);
+      font-size: 2.8rem;
+      color: #000;
       margin-bottom: 0.5rem;
     }
 
     header p {
-      color: var(--subtle);
-      font-size: 1rem;
+      color: #111;
+      font-size: 1.1rem;
     }
 
     nav {
-      margin-top: 1.5rem;
+      margin-top: 1rem;
     }
 
     nav a {
       margin: 0 1rem;
-      color: var(--text);
-      text-decoration: none;
+      color: #000;
+      font-weight: 600;
       font-size: 0.95rem;
       border-bottom: 2px solid transparent;
       transition: all 0.2s ease;
     }
 
     nav a:hover {
-      border-color: var(--primary);
-      color: var(--primary);
+      border-color: #000;
     }
 
-    .container {
-      max-width: 1000px;
+    .hero {
+      background: url('https://source.unsplash.com/1600x500/?technology,coding') center/cover no-repeat;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      font-size: 2rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 4px #000;
+    }
+
+    .main {
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      gap: 2rem;
+      max-width: 1200px;
       margin: 3rem auto;
       padding: 0 1.5rem;
-      display: grid;
-      gap: 2rem;
     }
 
     .post {
@@ -78,6 +98,7 @@
       border-radius: 12px;
       box-shadow: var(--shadow);
       padding: 1.8rem;
+      margin-bottom: 2rem;
       transition: transform 0.3s ease;
     }
 
@@ -102,6 +123,28 @@
       color: #c0c6d1;
     }
 
+    .sidebar {
+      background: var(--bg-light);
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+
+    .sidebar h3 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .sidebar li {
+      margin-bottom: 0.8rem;
+      color: var(--text);
+    }
+
     footer {
       text-align: center;
       margin-top: 4rem;
@@ -109,23 +152,21 @@
       font-size: 0.9rem;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
+      .main {
+        grid-template-columns: 1fr;
+      }
       header h1 {
         font-size: 2rem;
-      }
-
-      nav a {
-        margin: 0 0.5rem;
-        font-size: 0.85rem;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Header -->
+
   <header>
     <h1>The Code Journal</h1>
-    <p>Thoughts on software, startups, and the future of tech.</p>
+    <p>Exploring software, startups & future tech</p>
     <nav>
       <a href="#">Home</a>
       <a href="#">Articles</a>
@@ -134,30 +175,53 @@
     </nav>
   </header>
 
-  <!-- Blog Posts -->
-  <main class="container">
-    <article class="post">
-      <h2>Building a Minimal SaaS in 48 Hours</h2>
-      <div class="meta">May 20, 2025 · 6 min read</div>
-      <p>In this post, I walk through how I designed, developed, and deployed a small SaaS product in just 48 hours using Next.js and Supabase...</p>
-    </article>
+  <section class="hero">
+    “Code is poetry. Every keystroke is a thought shared with the machine.”
+  </section>
 
-    <article class="post">
-      <h2>5 Productivity Hacks for Developers</h2>
-      <div class="meta">May 12, 2025 · 3 min read</div>
-      <p>Between distractions and meetings, staying productive can be hard. Here are 5 techniques that have helped me reclaim my focus and flow...</p>
-    </article>
+  <main class="main">
+    <section>
+      <article class="post">
+        <h2>Building a Minimal SaaS in 48 Hours</h2>
+        <div class="meta">May 20, 2025 · 6 min read</div>
+        <p>I challenged myself to launch a product in 2 days. Using Next.js, Supabase, and Vercel, here's how I shipped something real with zero overhead...</p>
+      </article>
 
-    <article class="post">
-      <h2>Why AI Agents Are the Future</h2>
-      <div class="meta">April 28, 2025 · 4 min read</div>
-      <p>LLM-powered agents are revolutionizing how we build software. This article explores their rise, key concepts, and where we're heading...</p>
-    </article>
+      <article class="post">
+        <h2>5 Productivity Hacks for Developers</h2>
+        <div class="meta">May 12, 2025 · 3 min read</div>
+        <p>Interruptions, Slack, meetings... sound familiar? These 5 habits helped me recover my developer flow — and they might work for you too.</p>
+      </article>
+
+      <article class="post">
+        <h2>Why AI Agents Are the Future</h2>
+        <div class="meta">April 28, 2025 · 4 min read</div>
+        <p>From Copilot to AutoGPT, intelligent agents are reshaping how we build and interact with software. Here's what you need to know now.</p>
+      </article>
+
+      <article class="post">
+        <h2>Self-Hosting vs Cloud: What's Right for You?</h2>
+        <div class="meta">April 18, 2025 · 5 min read</div>
+        <p>When do you self-host, and when should you lean on AWS or Render? A breakdown of cost, control, speed, and security tradeoffs.</p>
+      </article>
+    </section>
+
+    <aside class="sidebar">
+      <h3>💻 Tech Stack I Use</h3>
+      <ul>
+        <li>⚙️ Next.js + Vite</li>
+        <li>🌐 Tailwind CSS</li>
+        <li>🧠 OpenAI APIs</li>
+        <li>🌍 Supabase / Firebase</li>
+        <li>🪐 PlanetScale (MySQL)</li>
+        <li>🚀 Vercel / Railway / Fly.io</li>
+      </ul>
+    </aside>
   </main>
 
-  <!-- Footer -->
   <footer>
-    <p>&copy; 2025 The Code Journal. Made with caffeine + curiosity ☕</p>
+    <p>&copy; 2025 The Code Journal. All rights reserved — stay curious 👨‍💻</p>
   </footer>
+
 </body>
 </html>
