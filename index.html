@@ -2,131 +2,110 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cooking Delight Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Code Journal</title>
   <style>
     :root {
-      --bg-color: #fdfdfd;
-      --primary: #ff7b54;
-      --accent: #ffb26b;
-      --dark: #2e2e2e;
-      --light: #ffffff;
-      --text: #444;
-      --meta: #888;
-      --shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-      --transition: 0.3s ease;
+      --bg: #0f1117;
+      --bg-light: #1a1d25;
+      --primary: #00c9a7;
+      --text: #d6dee9;
+      --subtle: #9fa7b4;
+      --font: 'Courier New', Courier, monospace;
+      --shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
     }
 
-    *, *::before, *::after {
+    * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: var(--bg-color);
+      background-color: var(--bg);
       color: var(--text);
+      font-family: var(--font);
       line-height: 1.6;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
+      padding-bottom: 4rem;
     }
 
     header {
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-      color: var(--light);
-      padding: 2rem 1rem;
+      background: var(--bg-light);
+      padding: 2rem;
       text-align: center;
-      box-shadow: var(--shadow);
+      border-bottom: 1px solid #222;
     }
 
     header h1 {
-      margin: 0;
-      font-size: 2.8rem;
-      letter-spacing: 1px;
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      color: var(--subtle);
+      font-size: 1rem;
     }
 
     nav {
-      margin-top: 1rem;
+      margin-top: 1.5rem;
     }
 
     nav a {
       margin: 0 1rem;
-      font-weight: 500;
-      font-size: 1rem;
-      padding: 0.25rem 0.5rem;
-      border-radius: 4px;
-      transition: background var(--transition);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.95rem;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s ease;
     }
 
     nav a:hover {
-      background-color: rgba(255, 255, 255, 0.15);
+      border-color: var(--primary);
+      color: var(--primary);
     }
 
     .container {
-      max-width: 1200px;
+      max-width: 1000px;
       margin: 3rem auto;
       padding: 0 1.5rem;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 2rem;
     }
 
-    .blog-card {
-      background-color: var(--light);
+    .post {
+      background: var(--bg-light);
       border-radius: 12px;
       box-shadow: var(--shadow);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: transform var(--transition), box-shadow var(--transition);
+      padding: 1.8rem;
+      transition: transform 0.3s ease;
     }
 
-    .blog-card:hover {
+    .post:hover {
       transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
     }
 
-    .blog-card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
-
-    .blog-content {
-      padding: 1.5rem;
-      flex-grow: 1;
-    }
-
-    .blog-content h2 {
-      margin: 0 0 0.5rem;
-      color: var(--primary);
+    .post h2 {
       font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
     }
 
     .meta {
-      font-size: 0.9rem;
-      color: var(--meta);
+      color: var(--subtle);
+      font-size: 0.85rem;
       margin-bottom: 1rem;
     }
 
-    .blog-content p {
-      margin: 0;
+    .post p {
       font-size: 1rem;
+      color: #c0c6d1;
     }
 
     footer {
-      background-color: #222;
-      color: #ccc;
       text-align: center;
-      padding: 2rem 1rem;
       margin-top: 4rem;
-    }
-
-    footer p {
-      margin: 0;
+      color: var(--subtle);
       font-size: 0.9rem;
     }
 
@@ -136,12 +115,8 @@
       }
 
       nav a {
-        font-size: 0.9rem;
         margin: 0 0.5rem;
-      }
-
-      .blog-card img {
-        height: 160px;
+        font-size: 0.85rem;
       }
     }
   </style>
@@ -149,51 +124,40 @@
 <body>
   <!-- Header -->
   <header>
-    <h1>Cooking Delight</h1>
+    <h1>The Code Journal</h1>
+    <p>Thoughts on software, startups, and the future of tech.</p>
     <nav>
       <a href="#">Home</a>
-      <a href="#">Recipes</a>
+      <a href="#">Articles</a>
+      <a href="#">Projects</a>
       <a href="#">About</a>
-      <a href="#">Contact</a>
     </nav>
   </header>
 
-  <!-- Blog Grid -->
+  <!-- Blog Posts -->
   <main class="container">
-    <!-- Post 1 -->
-    <article class="blog-card">
-      <img src="https://source.unsplash.com/800x400/?chocolate,cake" alt="Delicious chocolate cake" />
-      <div class="blog-content">
-        <h2>The Ultimate Chocolate Cake</h2>
-        <div class="meta">Oct 24, 2024 · 5 min read</div>
-        <p>This rich and moist chocolate cake is the perfect treat for any chocolate lover. Great for birthdays, celebrations, or just because!</p>
-      </div>
+    <article class="post">
+      <h2>Building a Minimal SaaS in 48 Hours</h2>
+      <div class="meta">May 20, 2025 · 6 min read</div>
+      <p>In this post, I walk through how I designed, developed, and deployed a small SaaS product in just 48 hours using Next.js and Supabase...</p>
     </article>
 
-    <!-- Post 2 -->
-    <article class="blog-card">
-      <img src="https://source.unsplash.com/800x400/?pasta,dinner" alt="Fresh pasta with herbs" />
-      <div class="blog-content">
-        <h2>5 Easy Pasta Dishes</h2>
-        <div class="meta">Oct 20, 2024 · 3 min read</div>
-        <p>Busy weeknights? Try these five delicious pasta recipes that are quick, easy, and full of flavor — all under 30 minutes!</p>
-      </div>
+    <article class="post">
+      <h2>5 Productivity Hacks for Developers</h2>
+      <div class="meta">May 12, 2025 · 3 min read</div>
+      <p>Between distractions and meetings, staying productive can be hard. Here are 5 techniques that have helped me reclaim my focus and flow...</p>
     </article>
 
-    <!-- Post 3 -->
-    <article class="blog-card">
-      <img src="https://source.unsplash.com/800x400/?smoothie,healthy" alt="Healthy breakfast smoothies" />
-      <div class="blog-content">
-        <h2>Healthy Smoothies to Start Your Day</h2>
-        <div class="meta">Oct 18, 2024 · 4 min read</div>
-        <p>Start your mornings right with these nutritious and delicious smoothie recipes. Great for energy and digestion!</p>
-      </div>
+    <article class="post">
+      <h2>Why AI Agents Are the Future</h2>
+      <div class="meta">April 28, 2025 · 4 min read</div>
+      <p>LLM-powered agents are revolutionizing how we build software. This article explores their rise, key concepts, and where we're heading...</p>
     </article>
   </main>
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2024 Cooking Delight Blog. Crafted with ❤️</p>
+    <p>&copy; 2025 The Code Journal. Made with caffeine + curiosity ☕</p>
   </footer>
 </body>
 </html>
