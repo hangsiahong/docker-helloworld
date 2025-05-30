@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Terminal Site</title>
+  <title>Terminal Simulation</title>
   <style>
     body {
       margin: 0;
@@ -16,54 +16,106 @@
     .terminal {
       max-width: 800px;
       margin: auto;
-      background: #000;
       border: 2px solid #33ff33;
       padding: 2rem;
+      background-color: #000;
+      min-height: 300px;
     }
 
-    .prompt::before {
-      content: "$ ";
-      color: #33ff33;
-    }
-
-    a {
-      color: #33ff33;
-      text-decoration: underline;
+    .line {
+      display: block;
+      white-space: pre-wrap;
     }
 
     .blinking-cursor {
       display: inline-block;
       width: 10px;
+      height: 1em;
       background-color: #33ff33;
       margin-left: 5px;
-      animation: blink 1s infinite;
+      animation: blink 1s step-start infinite;
+      vertical-align: bottom;
     }
 
     @keyframes blink {
-      0%, 50% { opacity: 1; }
-      50.01%, 100% { opacity: 0; }
+      50% { opacity: 0; }
     }
   </style>
 </head>
 <body>
 
-  <div class="terminal">
-    <div class="prompt">whoami</div>
-    <p>I'm a minimalist web developer who loves terminal vibes.</p>
-
-    <div class="prompt">projects</div>
-    <ul>
-      <li><a href="#">portfolio-site</a></li>
-      <li><a href="#">blog-engine</a></li>
-      <li><a href="#">cli-notes-app</a></li>
-    </ul>
-
-    <div class="prompt">contact</div>
-    <p>Email: <a href="mailto:you@example.com">you@example.com</a></p>
-
-    <div class="prompt">exit</div>
-    <p>Session closed. Have a nice day.<span class="blinking-cursor"></span></p>
+  <div class="terminal" id="terminal">
+    <!-- Dynamic content goes here -->
   </div>
+
+  <script>
+    const terminal = document.getElementById('terminal');
+    const lines = [
+      { type: 'command', text: 'whoami' },
+      { type: 'response', text: 'cool_dev@terminal.site' },
+      { type: 'command', text: 'projects' },
+      { type: 'response', text: '- portfolio-site\n- cli-notes\n- blog-engine' },
+      { type: 'command', text: 'contact' },
+      { type: 'response', text: 'email: you@example.com' },
+      { type: 'command', text: 'exit' },
+      { type: 'response', text: 'Session closed. Have a nice day.' },
+    ];
+
+    let lineIndex = 0;
+
+    function typeLine(line, callback) {
+      let i = 0;
+      const span = document.createElement('span');
+      span.className = 'line';
+      if (line.type === 'command') {
+        span.textContent = '$ ';
+      }
+      terminal.appendChild(span);
+
+      const interval = setInterval(() => {
+        if (i < line.text.length) {
+          span.textContent += line.text.charAt(i);
+          i++;
+        } else {
+          clearInterval(interval);
+          span.appendChild(document.createElement('br'));
+          callback();
+        }
+      }, 40);
+    }
+
+    function printResponse(text, callback) {
+      const span = document.createElement('span');
+      span.className = 'line';
+      span.innerText = text + '\n';
+      terminal.appendChild(span);
+      callback();
+    }
+
+    function processLine() {
+      if (lineIndex >= lines.length) {
+        const cursor = document.createElement('span');
+        cursor.className = 'blinking-cursor';
+        terminal.appendChild(cursor);
+        return;
+      }
+
+      const line = lines[lineIndex];
+      if (line.type === 'command') {
+        typeLine(line, () => {
+          lineIndex++;
+          setTimeout(processLine, 300);
+        });
+      } else {
+        printResponse(line.text, () => {
+          lineIndex++;
+          setTimeout(processLine, 300);
+        });
+      }
+    }
+
+    processLine();
+  </script>
 
 </body>
 </html>
