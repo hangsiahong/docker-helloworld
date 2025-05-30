@@ -3,67 +3,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Frosted Glass Site</title>
+  <title>Terminal Site</title>
   <style>
-    body, html {
+    body {
       margin: 0;
-      padding: 0;
-      height: 100%;
-      font-family: 'Segoe UI', sans-serif;
-      background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') no-repeat center center fixed;
-      background-size: cover;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      background: #000;
+      color: #33ff33;
+      font-family: 'Courier New', monospace;
+      padding: 2rem;
     }
 
-    .glass {
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 1rem;
-      padding: 3rem;
-      width: 90%;
-      max-width: 600px;
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-      color: #fff;
-      text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.3);
+    .terminal {
+      max-width: 800px;
+      margin: auto;
+      background: #000;
+      border: 2px solid #33ff33;
+      padding: 2rem;
     }
 
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
+    .prompt::before {
+      content: "$ ";
+      color: #33ff33;
     }
 
-    p {
-      font-size: 1.2rem;
-      color: #e0e0e0;
+    a {
+      color: #33ff33;
+      text-decoration: underline;
     }
 
-    a.button {
+    .blinking-cursor {
       display: inline-block;
-      margin-top: 2rem;
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.5rem;
-      background: rgba(0, 255, 200, 0.2);
-      color: #00ffd0;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s;
+      width: 10px;
+      background-color: #33ff33;
+      margin-left: 5px;
+      animation: blink 1s infinite;
     }
 
-    a.button:hover {
-      background: rgba(0, 255, 200, 0.4);
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      50.01%, 100% { opacity: 0; }
     }
   </style>
 </head>
 <body>
 
-  <div class="glass">
-    <h1>Hello, I'm Frosty</h1>
-    <p>A beautiful one-page site with glassmorphism and a vibrant vibe.</p>
-    <a href="mailto:you@example.com" class="button">Contact Me</a>
+  <div class="terminal">
+    <div class="prompt">whoami</div>
+    <p>I'm a minimalist web developer who loves terminal vibes.</p>
+
+    <div class="prompt">projects</div>
+    <ul>
+      <li><a href="#">portfolio-site</a></li>
+      <li><a href="#">blog-engine</a></li>
+      <li><a href="#">cli-notes-app</a></li>
+    </ul>
+
+    <div class="prompt">contact</div>
+    <p>Email: <a href="mailto:you@example.com">you@example.com</a></p>
+
+    <div class="prompt">exit</div>
+    <p>Session closed. Have a nice day.<span class="blinking-cursor"></span></p>
   </div>
 
 </body>
