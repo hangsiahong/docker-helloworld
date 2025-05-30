@@ -3,119 +3,119 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Terminal Simulation</title>
+  <title>HoloDash</title>
   <style>
     body {
       margin: 0;
-      background: #000;
-      color: #33ff33;
-      font-family: 'Courier New', monospace;
+      font-family: 'Orbitron', sans-serif;
+      background: #01010a;
+      color: #00f7ff;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: radial-gradient(#00f7ff11 1px, transparent 1px);
+      background-size: 30px 30px;
+      z-index: -1;
+      opacity: 0.1;
+    }
+
+    header {
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      text-shadow: 0 0 15px #00f7ff;
+    }
+
+    .glow {
+      animation: pulse 2s infinite alternate;
+    }
+
+    @keyframes pulse {
+      from {
+        text-shadow: 0 0 10px #00f7ff;
+      }
+      to {
+        text-shadow: 0 0 25px #00f7ff;
+      }
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
       padding: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
     }
 
-    .terminal {
-      max-width: 800px;
-      margin: auto;
-      border: 2px solid #33ff33;
+    .card {
+      background: rgba(0, 247, 255, 0.05);
+      border: 1px solid #00f7ff44;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 0 10px #00f7ff22;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 20px #00f7ff66;
+    }
+
+    footer {
+      text-align: center;
       padding: 2rem;
-      background-color: #000;
-      min-height: 300px;
+      font-size: 0.9rem;
+      color: #00f7ff66;
     }
 
-    .line {
-      display: block;
-      white-space: pre-wrap;
+    a {
+      color: #00f7ff;
+      text-decoration: none;
     }
 
-    .blinking-cursor {
-      display: inline-block;
-      width: 10px;
-      height: 1em;
-      background-color: #33ff33;
-      margin-left: 5px;
-      animation: blink 1s step-start infinite;
-      vertical-align: bottom;
-    }
-
-    @keyframes blink {
-      50% { opacity: 0; }
-    }
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap');
   </style>
 </head>
 <body>
 
-  <div class="terminal" id="terminal">
-    <!-- Dynamic content goes here -->
-  </div>
+  <header>
+    <h1 class="glow">HoloDash</h1>
+    <p>A futuristic dashboard interface</p>
+  </header>
 
-  <script>
-    const terminal = document.getElementById('terminal');
-    const lines = [
-      { type: 'command', text: 'whoami' },
-      { type: 'response', text: 'cool_dev@terminal.site' },
-      { type: 'command', text: 'projects' },
-      { type: 'response', text: '- portfolio-site\n- cli-notes\n- blog-engine' },
-      { type: 'command', text: 'contact' },
-      { type: 'response', text: 'email: you@example.com' },
-      { type: 'command', text: 'exit' },
-      { type: 'response', text: 'Session closed. Have a nice day.' },
-    ];
+  <section class="grid">
+    <div class="card">
+      <h2>Status</h2>
+      <p>All systems nominal. Energy at 98%.</p>
+    </div>
+    <div class="card">
+      <h2>Navigation</h2>
+      <p>Next checkpoint: Lunar Orbit in T–4h.</p>
+    </div>
+    <div class="card">
+      <h2>Comms</h2>
+      <p>Last transmission: Commander Vega - “Hold position.”</p>
+    </div>
+    <div class="card">
+      <h2>Logs</h2>
+      <p>System scan complete. No anomalies detected.</p>
+    </div>
+  </section>
 
-    let lineIndex = 0;
-
-    function typeLine(line, callback) {
-      let i = 0;
-      const span = document.createElement('span');
-      span.className = 'line';
-      if (line.type === 'command') {
-        span.textContent = '$ ';
-      }
-      terminal.appendChild(span);
-
-      const interval = setInterval(() => {
-        if (i < line.text.length) {
-          span.textContent += line.text.charAt(i);
-          i++;
-        } else {
-          clearInterval(interval);
-          span.appendChild(document.createElement('br'));
-          callback();
-        }
-      }, 40);
-    }
-
-    function printResponse(text, callback) {
-      const span = document.createElement('span');
-      span.className = 'line';
-      span.innerText = text + '\n';
-      terminal.appendChild(span);
-      callback();
-    }
-
-    function processLine() {
-      if (lineIndex >= lines.length) {
-        const cursor = document.createElement('span');
-        cursor.className = 'blinking-cursor';
-        terminal.appendChild(cursor);
-        return;
-      }
-
-      const line = lines[lineIndex];
-      if (line.type === 'command') {
-        typeLine(line, () => {
-          lineIndex++;
-          setTimeout(processLine, 300);
-        });
-      } else {
-        printResponse(line.text, () => {
-          lineIndex++;
-          setTimeout(processLine, 300);
-        });
-      }
-    }
-
-    processLine();
-  </script>
+  <footer>
+    &copy; 2025 HoloDash Systems. UI Simulation Mode Active.
+  </footer>
 
 </body>
 </html>
