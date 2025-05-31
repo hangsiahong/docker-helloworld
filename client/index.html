@@ -3,11 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Cosmic Orbit</title>
+  <title>Futuristic HUD</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
     body {
       margin: 0;
-      background: radial-gradient(circle at center, #0a0f2c, #000);
+      background: radial-gradient(ellipse at center, #001019 0%, #000000 100%);
+      color: #00fff7;
+      font-family: 'Orbitron', sans-serif;
       height: 100vh;
       overflow: hidden;
       display: flex;
@@ -15,98 +19,82 @@
       align-items: center;
     }
 
-    .universe {
+    .hud {
+      width: 80%;
+      height: 80%;
+      border: 2px solid #00fff7;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 0 15px #00fff7aa;
       position: relative;
-      width: 400px;
-      height: 400px;
+      background: rgba(0, 255, 247, 0.02);
     }
 
-    .orbit {
+    .grid {
       position: absolute;
-      border: 1px dashed rgba(255, 255, 255, 0.1);
-      border-radius: 50%;
-      animation: spin linear infinite;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-image: linear-gradient(#00fff311 1px, transparent 1px),
+                        linear-gradient(to right, #00fff311 1px, transparent 1px);
+      background-size: 20px 20px;
+      z-index: 0;
     }
 
-    .planet {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
+    .scanline {
       position: absolute;
-      top: 50%;
-      left: 100%;
-      transform: translate(-50%, -50%);
+      width: 100%;
+      height: 2px;
+      background: #00fff755;
+      top: 0;
+      left: 0;
+      animation: scan 4s linear infinite;
     }
 
-    .orbit1 {
-      width: 120px;
-      height: 120px;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      animation-duration: 10s;
+    @keyframes scan {
+      0% { top: 0; }
+      100% { top: 100%; }
     }
 
-    .orbit1 .planet {
-      background: #ff6ec7;
+    .info {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
     }
 
-    .orbit2 {
-      width: 200px;
-      height: 200px;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      animation-duration: 20s;
+    .panel {
+      border: 1px solid #00fff7;
+      padding: 15px;
+      border-radius: 10px;
+      background: rgba(0, 255, 247, 0.05);
     }
 
-    .orbit2 .planet {
-      background: #76f2ff;
+    .panel h2 {
+      margin: 0 0 10px 0;
+      font-size: 1.2rem;
     }
 
-    .orbit3 {
-      width: 280px;
-      height: 280px;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      animation-duration: 30s;
-    }
-
-    .orbit3 .planet {
-      background: #baff6e;
-    }
-
-    .sun {
-      width: 50px;
-      height: 50px;
-      background: radial-gradient(circle, #ffe600, #ff9800);
-      border-radius: 50%;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      box-shadow: 0 0 30px #ffcc00aa;
-    }
-
-    @keyframes spin {
-      0%   { transform: translate(-50%, -50%) rotate(0deg); }
-      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    .panel p {
+      font-size: 0.9rem;
+      color: #aaffff;
     }
   </style>
 </head>
 <body>
 
-  <div class="universe">
-    <div class="sun"></div>
-    <div class="orbit orbit1">
-      <div class="planet"></div>
-    </div>
-    <div class="orbit orbit2">
-      <div class="planet"></div>
-    </div>
-    <div class="orbit orbit3">
-      <div class="planet"></div>
+  <div class="hud">
+    <div class="grid"></div>
+    <div class="scanline"></div>
+    <div class="info">
+      <div class="panel">
+        <h2>🛰️ Satellite Feed</h2>
+        <p>Orbit status: Stable<br>Signal: 98%<br>Lat: 13.7563° N<br>Lon: 100.5018° E</p>
+      </div>
+      <div class="panel">
+        <h2>📡 Communication</h2>
+        <p>Last ping: 204ms<br>Encryption: AES-256<br>Status: Connected</p>
+      </div>
     </div>
   </div>
 
