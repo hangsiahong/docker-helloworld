@@ -3,95 +3,48 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Flip Cards</title>
+  <title>Neon Typing</title>
   <style>
     body {
       margin: 0;
-      background: #0f0f0f;
-      color: #fff;
-      font-family: Arial, sans-serif;
+      background: #000;
+      color: #00ff88;
+      font-family: 'Courier New', monospace;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
     }
 
-    .container {
-      display: flex;
-      gap: 2rem;
-      perspective: 1000px;
+    .typing-container {
+      border: 2px solid #00ff88;
+      padding: 30px 40px;
+      box-shadow: 0 0 20px #00ff88aa;
+      background: rgba(0, 255, 136, 0.05);
     }
 
-    .card {
-      width: 200px;
-      height: 300px;
-      position: relative;
-      transform-style: preserve-3d;
-      transition: transform 0.8s;
+    .typing {
+      font-size: 1.5rem;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid #00ff88;
+      animation: typing 4s steps(40, end), blink 0.7s step-end infinite;
     }
 
-    .card:hover {
-      transform: rotateY(180deg);
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
     }
 
-    .side {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border-radius: 12px;
-      backface-visibility: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 1rem;
-    }
-
-    .front {
-      background: linear-gradient(135deg, #1f1c2c, #928dab);
-    }
-
-    .back {
-      background: #232526;
-      color: #00eaff;
-      transform: rotateY(180deg);
-    }
-
-    .side h3 {
-      margin-bottom: 0.5rem;
-    }
-
-    .side p {
-      font-size: 0.9rem;
-      text-align: center;
-      line-height: 1.4;
+    @keyframes blink {
+      50% { border-color: transparent; }
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <div class="card">
-      <div class="side front">
-        <h3>🌟 Project One</h3>
-        <p>Click to flip!</p>
-      </div>
-      <div class="side back">
-        <h3>Details</h3>
-        <p>This is an interactive 3D card with pure CSS.</p>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="side front">
-        <h3>🔥 Project Two</h3>
-        <p>Click to flip!</p>
-      </div>
-      <div class="side back">
-        <h3>Details</h3>
-        <p>Use this layout to showcase skills or features.</p>
-      </div>
-    </div>
+  <div class="typing-container">
+    <div class="typing">Initializing system... Welcome, Commander.</div>
   </div>
 
 </body>
