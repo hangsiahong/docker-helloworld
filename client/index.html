@@ -3,97 +3,93 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Futuristic HUD</title>
+  <title>Flip Cards</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
-
     body {
       margin: 0;
-      background: radial-gradient(ellipse at center, #001019 0%, #000000 100%);
-      color: #00fff7;
-      font-family: 'Orbitron', sans-serif;
-      height: 100vh;
-      overflow: hidden;
+      background: #0f0f0f;
+      color: #fff;
+      font-family: Arial, sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
+      height: 100vh;
     }
 
-    .hud {
-      width: 80%;
-      height: 80%;
-      border: 2px solid #00fff7;
-      border-radius: 15px;
-      padding: 20px;
-      box-shadow: 0 0 15px #00fff7aa;
+    .container {
+      display: flex;
+      gap: 2rem;
+      perspective: 1000px;
+    }
+
+    .card {
+      width: 200px;
+      height: 300px;
       position: relative;
-      background: rgba(0, 255, 247, 0.02);
+      transform-style: preserve-3d;
+      transition: transform 0.8s;
     }
 
-    .grid {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-image: linear-gradient(#00fff311 1px, transparent 1px),
-                        linear-gradient(to right, #00fff311 1px, transparent 1px);
-      background-size: 20px 20px;
-      z-index: 0;
+    .card:hover {
+      transform: rotateY(180deg);
     }
 
-    .scanline {
+    .side {
       position: absolute;
       width: 100%;
-      height: 2px;
-      background: #00fff755;
-      top: 0;
-      left: 0;
-      animation: scan 4s linear infinite;
+      height: 100%;
+      border-radius: 12px;
+      backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
     }
 
-    @keyframes scan {
-      0% { top: 0; }
-      100% { top: 100%; }
+    .front {
+      background: linear-gradient(135deg, #1f1c2c, #928dab);
     }
 
-    .info {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
+    .back {
+      background: #232526;
+      color: #00eaff;
+      transform: rotateY(180deg);
     }
 
-    .panel {
-      border: 1px solid #00fff7;
-      padding: 15px;
-      border-radius: 10px;
-      background: rgba(0, 255, 247, 0.05);
+    .side h3 {
+      margin-bottom: 0.5rem;
     }
 
-    .panel h2 {
-      margin: 0 0 10px 0;
-      font-size: 1.2rem;
-    }
-
-    .panel p {
+    .side p {
       font-size: 0.9rem;
-      color: #aaffff;
+      text-align: center;
+      line-height: 1.4;
     }
   </style>
 </head>
 <body>
 
-  <div class="hud">
-    <div class="grid"></div>
-    <div class="scanline"></div>
-    <div class="info">
-      <div class="panel">
-        <h2>🛰️ Satellite Feed</h2>
-        <p>Orbit status: Stable<br>Signal: 98%<br>Lat: 13.7563° N<br>Lon: 100.5018° E</p>
+  <div class="container">
+    <div class="card">
+      <div class="side front">
+        <h3>🌟 Project One</h3>
+        <p>Click to flip!</p>
       </div>
-      <div class="panel">
-        <h2>📡 Communication</h2>
-        <p>Last ping: 204ms<br>Encryption: AES-256<br>Status: Connected</p>
+      <div class="side back">
+        <h3>Details</h3>
+        <p>This is an interactive 3D card with pure CSS.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="side front">
+        <h3>🔥 Project Two</h3>
+        <p>Click to flip!</p>
+      </div>
+      <div class="side back">
+        <h3>Details</h3>
+        <p>Use this layout to showcase skills or features.</p>
       </div>
     </div>
   </div>
