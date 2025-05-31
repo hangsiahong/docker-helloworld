@@ -3,84 +3,110 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Floating UI</title>
+  <title>Cosmic Orbit</title>
   <style>
     body {
       margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+      background: radial-gradient(circle at center, #0a0f2c, #000);
       height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       overflow: hidden;
-    }
-
-    .container {
       display: flex;
-      gap: 2rem;
-      flex-wrap: wrap;
       justify-content: center;
+      align-items: center;
     }
 
-    .card {
-      width: 250px;
-      height: 320px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-      backdrop-filter: blur(10px);
-      color: white;
-      padding: 2rem;
-      transition: transform 0.3s ease;
-      transform-style: preserve-3d;
-      cursor: pointer;
+    .universe {
+      position: relative;
+      width: 400px;
+      height: 400px;
     }
 
-    .card:hover {
-      transform: perspective(800px) rotateX(6deg) rotateY(-6deg) scale(1.05);
-    }
-
-    .card h2 {
-      margin-top: 0;
-      font-size: 1.4rem;
-    }
-
-    .card p {
-      font-size: 0.9rem;
-      color: #e0f7fa;
-    }
-
-    .header {
+    .orbit {
       position: absolute;
-      top: 40px;
-      width: 100%;
-      text-align: center;
-      color: white;
-      font-size: 2rem;
-      font-weight: 600;
-      letter-spacing: 1px;
+      border: 1px dashed rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: spin linear infinite;
+    }
+
+    .planet {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 100%;
+      transform: translate(-50%, -50%);
+    }
+
+    .orbit1 {
+      width: 120px;
+      height: 120px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation-duration: 10s;
+    }
+
+    .orbit1 .planet {
+      background: #ff6ec7;
+    }
+
+    .orbit2 {
+      width: 200px;
+      height: 200px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation-duration: 20s;
+    }
+
+    .orbit2 .planet {
+      background: #76f2ff;
+    }
+
+    .orbit3 {
+      width: 280px;
+      height: 280px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation-duration: 30s;
+    }
+
+    .orbit3 .planet {
+      background: #baff6e;
+    }
+
+    .sun {
+      width: 50px;
+      height: 50px;
+      background: radial-gradient(circle, #ffe600, #ff9800);
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 30px #ffcc00aa;
+    }
+
+    @keyframes spin {
+      0%   { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
     }
   </style>
 </head>
 <body>
 
-  <div class="header">🧊 Floating Glass Cards</div>
-
-  <div class="container">
-    <div class="card">
-      <h2>Analytics</h2>
-      <p>View trends, graphs, and data summaries in real-time.</p>
+  <div class="universe">
+    <div class="sun"></div>
+    <div class="orbit orbit1">
+      <div class="planet"></div>
     </div>
-    <div class="card">
-      <h2>Messages</h2>
-      <p>See recent conversations, notifications and quick replies.</p>
+    <div class="orbit orbit2">
+      <div class="planet"></div>
     </div>
-    <div class="card">
-      <h2>System</h2>
-      <p>Monitor server load, health checks, and deployment logs.</p>
+    <div class="orbit orbit3">
+      <div class="planet"></div>
     </div>
   </div>
 
