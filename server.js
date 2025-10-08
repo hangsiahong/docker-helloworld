@@ -1,6 +1,6 @@
 const http = require('http');
 const fs = require('fs');
-const port = 8080;
+const port = 80;
 
 const server = http.createServer((req, res) => {
     fs.readFile('./index.html', (err, data) => {
